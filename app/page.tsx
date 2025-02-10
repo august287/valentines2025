@@ -84,7 +84,7 @@ export default function Home() {
                 <div className="relative z-40 animate-fade-in">
                     <div className="flex justify-center mt-4">
                     <Link
-                      href="google.com"
+                      href="https://forms.gle/RoVRUdDAgySd52x68"
                       className="bg-yellow-400 text-white px-8 py-3 rounded-full hover:bg-yellow-500 
                       transition-all font-bold text-lg hover:scale-110 transform-gpu 
                       flex items-center gap-2 animate-bounce-gentle"
