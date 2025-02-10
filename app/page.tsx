@@ -1,101 +1,115 @@
-import Image from "next/image";
+"use client"
+
+import { useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import Letter from "./components/Letter"
+import TextBubble from "./components/TextBubble"
+import NoButton from "./components/NoButton"
+import BackgroundMusic from "./components/BackgroundMusic"
+import FloatingImages from "./components/FloatingImages"
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [isLetterOpen, setIsLetterOpen] = useState(false)
+  const [answer, setAnswer] = useState<string | null>(null)
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleLetterClick = () => {
+    setIsLetterOpen(true)
+  }
+
+  const handleAnswer = (choice: string) => {
+    setAnswer(choice)
+  }
+
+  return (
+    <main
+      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
+      style={{
+        backgroundImage: 'url("/bg.jpg")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <BackgroundMusic />
+      <FloatingImages />
+      <div className="text-center relative z-10 bg-white/60 p-8 rounded-3xl backdrop-blur-sm min-h-[600px] w-full max-w-2xl flex flex-col items-center">
+        <h1 className="text-4xl font-bold text-pink-600 mb-8">Hi Nerd! :D</h1>
+
+        <div className="relative flex flex-col items-center flex-1 w-full">
+          {/* Letter Component */}
+          <div className="relative z-30 mb-16">
+            <Letter isOpen={isLetterOpen} onLetterClick={handleLetterClick} />
+          </div>
+
+          {/* Answer Buttons */}
+          {isLetterOpen && !answer && (
+            <div className="mt-48 z-40 animate-fade-in">
+              <div className="space-x-4">
+                <button
+                  onClick={() => handleAnswer("Yes")}
+                  className="bg-yellow-400 text-white px-8 py-3 rounded-full hover:bg-yellow-500 transition-colors font-bold text-lg hover:scale-110 transform-gpu"
+                >
+                  Yes
+                </button>
+                <NoButton />
+              </div>
+            </div>
+          )}
+
+          {/* Pompompurin Image, Text Bubble, and Questions Button */}
+          <div className="relative w-full mt-16">
+            {answer && (
+              <>
+                {/* Pompompurin Image and Text Bubble */}
+                <div
+                  className="absolute left-1/2 transform -translate-x-1/2 z-30"
+                  style={{
+                    bottom: "30px",
+                    transition: "all 0.5s ease-out",
+                  }}
+                >
+                  <div className="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-full">
+                    <TextBubble message={answer === "Yes" ? "Yay! 💖" : "Absolutely fantastic! 💖💖"} />
+                  </div>
+                  <Image
+                    src="/pompompurin2.png"
+                    alt="Pompompurin celebrating"
+                    width={300}
+                    height={300}
+                    className="transform-gpu transition-all duration-500 scale-110 animate-bounce-gentle"
+                  />
+                </div>
+
+                {/* Questions Button */}
+                <div className="relative z-40 animate-fade-in">
+                  <Link
+                    href="google.com"
+                    className="bg-yellow-400 text-white px-8 py-3 rounded-full hover:bg-yellow-500 
+                      transition-all font-bold text-lg hover:scale-110 transform-gpu 
+                      flex items-center gap-2 animate-bounce-gentle"
+                  >
+                    <span className="text-center">I have a few questions before we go! 💌</span>
+                  </Link>
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Non-celebrating Pompompurin (visible before answer) */}
+          {!answer && (
+            <div className="absolute z-20 left-1/2 bottom-0 transform -translate-x-1/2">
+              <Image
+                src="/pompompurin1.png"
+                alt="Pompompurin"
+                width={300}
+                height={300}
+                className="transform-gpu transition-all duration-500 hover:scale-105"
+              />
+            </div>
+          )}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </div>
+    </main>
+  )
 }
+
