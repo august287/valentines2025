@@ -25,7 +25,7 @@ export default function Home() {
     <main
       className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
       style={{
-        backgroundImage: 'url("/bg.jpg")',
+        backgroundImage: 'url("./bg.jpg")',
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -72,7 +72,7 @@ export default function Home() {
                     <TextBubble message={answer === "Yes" ? "Yay! 💖" : "Absolutely fantastic! 💖💖"} />
                   </div>
                   <Image
-                    src="/pompompurin2.png"
+                    src="./pompompurin2.png"
                     alt="Pompompurin celebrating"
                     width={300}
                     height={300}
@@ -82,14 +82,16 @@ export default function Home() {
 
                 {/* Questions Button */}
                 <div className="relative z-40 animate-fade-in">
-                  <Link
-                    href="google.com"
-                    className="bg-yellow-400 text-white px-8 py-3 rounded-full hover:bg-yellow-500 
+                    <div className="flex justify-center mt-4">
+                    <Link
+                      href="google.com"
+                      className="bg-yellow-400 text-white px-8 py-3 rounded-full hover:bg-yellow-500 
                       transition-all font-bold text-lg hover:scale-110 transform-gpu 
                       flex items-center gap-2 animate-bounce-gentle"
-                  >
-                    <span className="text-center">I have a few questions before we go! 💌</span>
-                  </Link>
+                    >
+                      <span className="text-center">I have a few questions before we go! 💌</span>
+                    </Link>
+                    </div>
                 </div>
               </>
             )}
@@ -99,7 +101,7 @@ export default function Home() {
           {!answer && (
             <div className="absolute z-20 left-1/2 bottom-0 transform -translate-x-1/2">
               <Image
-                src="/pompompurin1.png"
+                src="./pompompurin1.png"
                 alt="Pompompurin"
                 width={300}
                 height={300}

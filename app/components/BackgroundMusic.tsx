@@ -56,7 +56,7 @@ export default function BackgroundMusic() {
         ref={audioRef}
         loop
         preload="auto"
-        src="/bgsound.mp3"
+        src="./bgsound.mp3"
       />
     </div>
   )

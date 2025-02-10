@@ -19,8 +19,8 @@ export default function FloatingImages() {
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
 
   const imageUrls = [
-    '/pompompurin1.png',
-    '/pompompurin2.png',
+    './pompompurin1.png',
+    './pompompurin2.png',
     '1.jpg',
     '2.jpg',
     '3.jpg',
