@@ -32,7 +32,7 @@ export default function Letter({ isOpen, onLetterClick }: LetterProps) {
           >
             <div className="pl-4 pr-4 text-[#8B4513] font-bold text-xl text-center">
               <div>Hi I hope this letter finds you well :D💕<br></br>
-                As we are nearing the second Valentine's Day that we are together, I'm hoping that we can celebrate
+                As we are nearing the second Valentine&apos;s Day that we are together, I'm hoping that we can celebrate
                 this one together as well 😗. Will you be my Valentine?🥹🐋
 
 
