@@ -1,3 +1,4 @@
+import React from 'react'
 import TextBubble from "./TextBubble"
 
 interface LetterProps {
