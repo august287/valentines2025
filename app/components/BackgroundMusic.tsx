@@ -9,7 +9,7 @@ export default function BackgroundMusic() {
     const audioElement = audioRef.current
     if (audioElement) {
       // Set initial volume
-      audioElement.volume = 0.2
+      audioElement.volume = 0.1
       
       // Add event listener for when the page receives interaction
       const handleInteraction = () => {

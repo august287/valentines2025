@@ -51,7 +51,7 @@ export default function FloatingImages() {
 
   useEffect(() => {
     // Create 40 random images
-    const newImages: FloatingImage[] = Array.from({ length: 26 }, (_, i) => ({
+    const newImages: FloatingImage[] = Array.from({ length: 35}, (_, i) => ({
       id: i,
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
@@ -63,6 +63,7 @@ export default function FloatingImages() {
     }))
     setImages(newImages)
   }, [])
+
 
   const handleMouseDown = (e: React.MouseEvent, id: number) => {
     const image = images.find(img => img.id === id)
